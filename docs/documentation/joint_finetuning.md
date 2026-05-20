@@ -1,6 +1,6 @@
 # Joint finetuning
 
-Joint single-outcome finetuning trains a separate model for each postoperative outcome of interest. The model jointly learns the structure of your clinical notes while learning to predict the outcome, ensuring it captures both the linguistic patterns of your institution's documentation style and the clinical features that drive your specific outcome. Unlike [multi-task finetuning](multitask_finetuning.md), this workflow is catered to a single specific outcome rather than multiple outcomes.
+Joint (semi-supervised) single-outcome finetuning trains a separate model for each postoperative outcome of interest. The model jointly learns the structure of your clinical notes while learning to predict the outcome, ensuring it captures both the linguistic patterns of your institution's documentation style and the clinical features that drive your specific outcome. Unlike [multi-task finetuning](multitask_finetuning.md), this workflow is catered to a single specific outcome rather than multiple outcomes.
 
 ![Joint finetuning workflow](../img/joint_supervision_visualization.jpg)
 
@@ -10,7 +10,7 @@ Joint single-outcome finetuning trains a separate model for each postoperative o
 
     surgicalplan.**joint_finetune**(*df, text_col, outcome_col, output_dir="joint_finetuned", base_model="emilyalsentzer/Bio_ClinicalBERT", hf_token=None, max_length=512, lambda_constant=2, mlm_probability=0.15, val_fraction=1/8, weight=None, training_configs=None*)
 
-Fine-tune Bio+ClinicalBERT on masked language modeling (MLM) jointly with a single binary classification head for one outcome.
+Fine-tune `Bio+ClinicalBERT` (or any encoder / BERT-based model) on self-supervised loss jointly with a single binary classification head for one outcome.
 
 ### Parameters
 
