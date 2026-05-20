@@ -1,0 +1,99 @@
+/*
+  Washington University in St. Louis brand colors
+  Primary (lead with red):  WashU Red   #BA0C2F   (Pantone 200)
+  Secondary (accent):        WashU Green #006747
+  Source: marcomm.washu.edu brand color palette.
+  Per WashU guidance, layouts lead with red; green is used as the
+  complementary accent (links, section rules, admonition bars) to keep
+  large red-on-green / green-on-red blocks to a minimum for accessibility.
+*/
+
+:root {
+  --washu-red: #BA0C2F;
+  --washu-red-dark: #8E0A24;
+  --washu-green: #006747;
+  --washu-green-dark: #00543A;
+  --washu-green-light: #E2F0EA;
+}
+
+/* ---- Light mode --------------------------------------------------------- */
+[data-md-color-scheme="default"] {
+  /* Header, navbar, primary buttons -> WashU red */
+  --md-primary-fg-color: var(--washu-red);
+  --md-primary-fg-color--light: var(--washu-red);
+  --md-primary-fg-color--dark: var(--washu-red-dark);
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffff;
+
+  /* Links, accents, hovers -> WashU green */
+  --md-accent-fg-color: var(--washu-green);
+  --md-accent-fg-color--transparent: rgba(0, 103, 71, 0.1);
+
+  --md-typeset-a-color: var(--washu-green);
+}
+
+/* ---- Dark mode ---------------------------------------------------------- */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: var(--washu-red);
+  --md-primary-fg-color--light: var(--washu-red);
+  --md-primary-fg-color--dark: var(--washu-red-dark);
+  --md-primary-bg-color: #ffffff;
+
+  /* Lighten green slightly so links stay legible on dark backgrounds */
+  --md-accent-fg-color: #2f9e7a;
+  --md-typeset-a-color: #43b08c;
+}
+
+/* Links hover state */
+.md-typeset a:hover {
+  color: var(--washu-red);
+}
+
+/* Section heading underline accent in WashU green */
+.md-typeset h2 {
+  border-bottom: 2px solid var(--washu-green);
+  padding-bottom: 0.3rem;
+}
+
+/* "note" admonition styled with WashU green accent bar (used for API
+   signatures, mirroring AutoThemeGenerator's !!! note "" blocks) */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-left: 4px solid var(--washu-green);
+}
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+  background-color: var(--washu-green-light);
+}
+[data-md-color-scheme="slate"] .md-typeset .note > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .note > summary {
+  background-color: rgba(0, 103, 71, 0.2);
+}
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before {
+  background-color: var(--washu-green);
+}
+
+/* Inline code accent */
+.md-typeset code {
+  color: var(--washu-green-dark);
+}
+[data-md-color-scheme="slate"] .md-typeset code {
+  color: #6cc3a3;
+}
+
+/* Tables: header row in a soft WashU green tint */
+.md-typeset table:not([class]) th {
+  background-color: var(--washu-green);
+  color: #ffffff;
+}
+
+/* Search highlight + footer */
+.md-search-result__teaser mark {
+  color: var(--washu-red);
+}
+
+/* Make the repo/source link area read cleanly on the red header */
+.md-header__topic .md-ellipsis {
+  font-weight: 600;
+}
