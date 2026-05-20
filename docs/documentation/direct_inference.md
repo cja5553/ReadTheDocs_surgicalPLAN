@@ -2,7 +2,7 @@
 
 Direct inference lets you use out-of-the-box models that have already been trained on clinical data and its associated postoperative outcomes. Unlike the finetuning workflows, this is a direct inference function that loads a pre-trained, ready-to-use model from HuggingFace Hub and therefore requires **no model training**.
 
-The default model is [`cja5553/BJH-perioperative-notes-bioClinicalBERT`](https://huggingface.co/cja5553/BJH-perioperative-notes-bioClinicalBERT), a Bio+ClinicalBERT variant that was multi-task fine-tuned across six postoperative outcomes: (1) death within 30 days, (2) DVT, (3) PE, (4) AKI, (5) delirium, and (6) pneumonia. This model was used in the accompanying [*npj Digital Medicine* paper](https://www.nature.com/articles/s41746-025-01489-2).
+The default model is [`cja5553/BJH-perioperative-notes-bioClinicalBERT`](https://huggingface.co/cja5553/BJH-perioperative-notes-bioClinicalBERT), a Bio+ClinicalBERT variant that was multi-task fine-tuned across six postoperative outcomes: (1) death within 30 days, (2) DVT, (3) PE, (4) AKI, (5) delirium, and (6) pneumonia. This model was used in the accompanying [*npj Digital Medicine* paper](https://www.nature.com/articles/s41746-025-01489-2). Nonetheless, any similarly architected model available on the user's local device or HuggingFace can be used.  
 
 ## `direct_inference_from_trained_model`
 
@@ -10,7 +10,7 @@ The default model is [`cja5553/BJH-perioperative-notes-bioClinicalBERT`](https:/
 
     surgicalplan.**direct_inference_from_trained_model**(*text, outcomes=None, model_name="cja5553/BJH-perioperative-notes-bioClinicalBERT", max_length=None, device=None, hf_token=None*)
 
-Score clinical text against a pre-trained multi-task model without any fine-tuning step. The model is downloaded from HuggingFace Hub on first use and cached locally thereafter.
+Score clinical text against a pre-trained multi-task model without any fine-tuning step. 
 
 ### Parameters
 
