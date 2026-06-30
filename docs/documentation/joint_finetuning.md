@@ -62,7 +62,7 @@ from surgicalplan import joint_finetune
 
 joint_finetune(
     df,
-    text_col="clinical_notes",
+    text_col="clinical_note",
     outcome_col="DVT",
     output_dir="DVT_model",
     training_configs={
@@ -83,7 +83,7 @@ import torch
 
 joint_finetune(
     df,
-    text_col="clinical_notes",
+    text_col="clinical_note",
     outcome_col="PE",
     output_dir="PE_model",
     weight=torch.tensor([20.0]),  # ~5% positive prevalence

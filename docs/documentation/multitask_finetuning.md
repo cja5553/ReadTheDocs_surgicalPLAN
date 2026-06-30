@@ -62,7 +62,7 @@ from surgicalplan import mtl_finetune
 
 mtl_finetune(
     df,
-    text_col="clinical_notes",
+    text_col="clinical_note",
     outcome_cols=["death_30d", "dvt", "pneumonia", "aki", "AUR", "PE"],
     output_dir="my_run",
     training_configs={
@@ -121,19 +121,19 @@ print(scores)
 
 !!! note ""
 
-    surgicalplan.**get_pseudo_data**()
+    surgicalplan.**get_pseudo_data**(*n=500*)
 
 Generate a small synthetic dataset of preoperative clinical notes with binary outcomes for testing and demonstration. Outcomes are not random — each is driven by realistic feature combinations in the note (procedure type, age, ASA class, comorbidities), so a fine-tuned model is expected to learn meaningful associations.
 
 ### Parameters
 
-None.
+- `n` (*int*, default `500`): Number of synthetic rows to generate. The data is deterministic (fixed seed), so the first `n` rows are the same set every call.
 
 ### Returns
 
-`pandas.DataFrame` with 1000 rows and 5 columns:
+`pandas.DataFrame` with `n` rows (default 500) and 5 columns:
 
-- `text` (*str*) — synthetic preoperative note.
+- `clinical_note` (*str*) — synthetic preoperative note.
 - `Outcome_1` to `Outcome_4` (*int*, 0/1) — binary outcomes driven by clinical features in the note.
 
 ### Example
@@ -142,8 +142,8 @@ None.
 from surgicalplan import get_pseudo_data
 
 df = get_pseudo_data()
-print(df.shape)             # (1000, 5)
-print(df.columns.tolist())  # ['text', 'Outcome_1', 'Outcome_2', 'Outcome_3', 'Outcome_4']
+print(df.shape)             # (500, 5)
+print(df.columns.tolist())  # ['clinical_note', 'Outcome_1', 'Outcome_2', 'Outcome_3', 'Outcome_4']
 ```
 
 See the [Examples](../examples.md) page for a full end-to-end demonstration using this synthetic dataset.

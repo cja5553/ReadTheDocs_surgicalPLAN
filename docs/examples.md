@@ -13,15 +13,15 @@ from surgicalplan import (
     get_postoperative_outcome_scores,
 )
 
-# 1. Generate a synthetic dataset (1000 notes, 4 binary outcomes)
+# 1. Generate a synthetic dataset (500 notes, 4 binary outcomes)
 df = get_pseudo_data()
-print(df.shape)             # (1000, 5)
-print(df.columns.tolist())  # ['text', 'Outcome_1', 'Outcome_2', 'Outcome_3', 'Outcome_4']
+print(df.shape)             # (500, 5)
+print(df.columns.tolist())  # ['clinical_note', 'Outcome_1', 'Outcome_2', 'Outcome_3', 'Outcome_4']
 
 # 2. Fine-tune a multi-task model across all four outcomes
 mtl_finetune(
     df,
-    text_col="text",
+    text_col="clinical_note",
     outcome_cols=["Outcome_1", "Outcome_2", "Outcome_3", "Outcome_4"],
     output_dir="demo_mtl_model",
     training_configs={
@@ -57,7 +57,7 @@ df = get_pseudo_data()
 # Train a model specialized for Outcome_1
 joint_finetune(
     df,
-    text_col="text",
+    text_col="clinical_note",
     outcome_col="Outcome_1",
     output_dir="demo_joint_model",
     training_configs={"num_train_epochs": 3, "learning_rate": 2e-5},

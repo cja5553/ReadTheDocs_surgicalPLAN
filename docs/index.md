@@ -4,10 +4,10 @@
 
 <p align="left">
   <a href="https://github.com/cja5553/ACS_demo_postoperative_risk_prediction_with_clinical_notes">
-    <img src="https://img.shields.io/badge/Documentation-v0.1.0-006747" alt="Documentation">
+    <img src="https://img.shields.io/badge/Documentation-v0.1.2-006747" alt="Documentation">
   </a>
   <a href="https://pypi.org/project/surgicalplan/">
-    <img src="https://img.shields.io/badge/pypi_package-v0.1.0-brightgreen" alt="pypi package">
+    <img src="https://img.shields.io/badge/pypi_package-v0.1.2-brightgreen" alt="pypi package">
   </a>
   <a href="https://github.com/cja5553/ACS_demo_postoperative_risk_prediction_with_clinical_notes">
     <img src="https://img.shields.io/badge/github_source_code-source_code?logo=github&color=BA0C2F" alt="GitHub Source Code">
@@ -95,12 +95,12 @@ from surgicalplan import (
 
 # 1. Get a small synthetic dataset for demonstration
 df = get_pseudo_data()
-# df columns: "text", "Outcome_1", "Outcome_2", "Outcome_3", "Outcome_4"
+# df columns: "clinical_note", "Outcome_1", "Outcome_2", "Outcome_3", "Outcome_4"
 
 # 2. Fine-tune a multi-task model across all four outcomes
 mtl_finetune(
     df,
-    text_col="text",
+    text_col="clinical_note",
     outcome_cols=["Outcome_1", "Outcome_2", "Outcome_3", "Outcome_4"],
     output_dir="my_finetuned_model",
 )
