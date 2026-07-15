@@ -4,10 +4,10 @@
 
 <p align="left">
   <a href="https://github.com/cja5553/ACS_demo_postoperative_risk_prediction_with_clinical_notes">
-    <img src="https://img.shields.io/badge/Documentation-v0.1.2-006747" alt="Documentation">
+    <img src="https://img.shields.io/badge/Documentation-v0.1.3-006747" alt="Documentation">
   </a>
   <a href="https://pypi.org/project/surgicalplan/">
-    <img src="https://img.shields.io/badge/pypi_package-v0.1.2-brightgreen" alt="pypi package">
+    <img src="https://img.shields.io/badge/pypi_package-v0.1.3-brightgreen" alt="pypi package">
   </a>
   <a href="https://github.com/cja5553/ACS_demo_postoperative_risk_prediction_with_clinical_notes">
     <img src="https://img.shields.io/badge/github_source_code-source_code?logo=github&color=BA0C2F" alt="GitHub Source Code">
@@ -84,7 +84,7 @@ pip install surgicalplan
 
 ## Quick example
 
-The package ships with [`get_pseudo_data`](documentation/multitask_finetuning.md#get_pseudo_data), a synthetic dataset generator, so you can run an end-to-end example without any private clinical data.
+The package ships with [`get_pseudo_data`](documentation/pseudo_data.md), a fixed dataset of 500 hand-written preoperative notes, so you can run an end-to-end example without any private clinical data.
 
 ```python
 from surgicalplan import (
@@ -93,30 +93,28 @@ from surgicalplan import (
     get_postoperative_outcome_scores,
 )
 
-# 1. Get a small synthetic dataset for demonstration
+# 1. Get the bundled demonstration dataset
 df = get_pseudo_data()
-# df columns: "clinical_note", "Outcome_1", "Outcome_2", "Outcome_3", "Outcome_4"
+# df columns: "clinical_note", "DVT", "Pneumonia", "AKI", "Delirium"
 
 # 2. Fine-tune a multi-task model across all four outcomes
 mtl_finetune(
     df,
     text_col="clinical_note",
-    outcome_cols=["Outcome_1", "Outcome_2", "Outcome_3", "Outcome_4"],
+    outcome_cols=["DVT", "Pneumonia", "AKI", "Delirium"],
     output_dir="my_finetuned_model",
 )
 
 # 3. Score a new clinical scenario
 note = (
-    "83-year-old male, ASA 4, scheduled for coronary artery bypass graft "
-    "(emergent three-vessel). Indication: severe CAD with LAD stenosis, "
-    "presenting with unstable angina. PMH: COPD, type 2 diabetes mellitus, "
-    "coronary artery disease, prior MI, chronic kidney disease stage 3. "
-    "Social: current smoker, 1 pack per day. BMI 34 (obese). Allergies: NKDA."
+    "74M, ASA 4, for coronary artery bypass grafting x3 with aortic valve "
+    "replacement. Indication: three-vessel disease with severe aortic stenosis, "
+    "EF 35%. PMH: CKD stage 3 Cr 1.8, T2DM on insulin, HTN."
 )
 
 scores = get_postoperative_outcome_scores("my_finetuned_model", note)
 print(scores)
-# {'Outcome_1': 0.12, 'Outcome_2': 0.28, 'Outcome_3': 0.04, 'Outcome_4': 0.39}
+# {'DVT': 0.31, 'Pneumonia': 0.24, 'AKI': 0.55, 'Delirium': 0.52}
 ```
 
 For details on each function and its parameters, refer to the [Documentation](documentation/index.md).

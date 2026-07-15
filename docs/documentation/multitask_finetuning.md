@@ -114,36 +114,3 @@ print(scores)
 # {'death_30d': 0.31, 'dvt': 0.12, 'pneumonia': 0.20,
 #  'aki': 0.44, 'AUR': 0.08, 'PE': 0.05}
 ```
-
----
-
-## `get_pseudo_data`
-
-!!! note ""
-
-    surgicalplan.**get_pseudo_data**(*n=500*)
-
-Generate a small synthetic dataset of preoperative clinical notes with binary outcomes for testing and demonstration. Outcomes are not random — each is driven by realistic feature combinations in the note (procedure type, age, ASA class, comorbidities), so a fine-tuned model is expected to learn meaningful associations.
-
-### Parameters
-
-- `n` (*int*, default `500`): Number of synthetic rows to generate. The data is deterministic (fixed seed), so the first `n` rows are the same set every call.
-
-### Returns
-
-`pandas.DataFrame` with `n` rows (default 500) and 5 columns:
-
-- `clinical_note` (*str*) — synthetic preoperative note.
-- `Outcome_1` to `Outcome_4` (*int*, 0/1) — binary outcomes driven by clinical features in the note.
-
-### Example
-
-```python
-from surgicalplan import get_pseudo_data
-
-df = get_pseudo_data()
-print(df.shape)             # (500, 5)
-print(df.columns.tolist())  # ['clinical_note', 'Outcome_1', 'Outcome_2', 'Outcome_3', 'Outcome_4']
-```
-
-See the [Examples](../examples.md) page for a full end-to-end demonstration using this synthetic dataset.

@@ -14,6 +14,7 @@ nav:
       - Direct inference: documentation/direct_inference.md
       - Joint finetuning: documentation/joint_finetuning.md
       - Multi-task finetuning: documentation/multitask_finetuning.md
+      - Pseudo data: documentation/pseudo_data.md
   - Examples: examples.md
 
 theme:

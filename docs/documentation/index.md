@@ -6,7 +6,8 @@ SurgicalPLAN exposes three workflows for predicting postoperative risks from cli
 from surgicalplan import (
     direct_inference_from_trained_model,   # Direct inference
     joint_finetune, get_outcome_score,     # Joint finetuning
-    mtl_finetune, get_postoperative_outcome_scores, get_pseudo_data,  # Multi-task
+    mtl_finetune, get_postoperative_outcome_scores,        # Multi-task
+    get_pseudo_data,                                       # Pseudo data
 )
 ```
 
@@ -34,7 +35,13 @@ Train a separate model for each outcome of interest. The model jointly learns th
 
 Train a single versatile model capable of predicting multiple postoperative outcomes from the same clinical notes — analogous to a foundation model. Instead of one model per outcome, you get one model with one classification head per outcome.
 
-→ [`mtl_finetune`](multitask_finetuning.md), [`get_postoperative_outcome_scores`](multitask_finetuning.md#get_postoperative_outcome_scores), [`get_pseudo_data`](multitask_finetuning.md#get_pseudo_data)
+→ [`mtl_finetune`](multitask_finetuning.md), [`get_postoperative_outcome_scores`](multitask_finetuning.md#get_postoperative_outcome_scores)
+
+### Pseudo data
+
+A fixed dataset of 500 hand-written preoperative notes with hand-assigned outcomes, shipped with the package so you can run any of the above end-to-end without private clinical data.
+
+→ [`get_pseudo_data`](pseudo_data.md)
 
 ## A note on saved models
 
